@@ -1,0 +1,42 @@
+﻿body {
+    background-color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+
+p {
+    color: black;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+h1, h2, h3 {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    color: black; 
+    text-decoration: underline;
+}
+
+.image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Optioneel: om de container op volledige schermhoogte te maken */
+
+    position: relative;
+    background: url(Partyplanner.png) no-repeat center center fixed;
+    background-size: contain;
+    color: white; /* Stel de tekstkleur in op wit of een andere goed leesbare kleur */
+    padding: 20px; /* Voeg wat ruimte toe rondom de tekst */
+}
+
+li:hover{
+    color: blue;
+}
+
+ul{
+    list-style-type: none;
+}

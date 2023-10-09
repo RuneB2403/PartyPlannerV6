@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Kalender";
+}
+
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>@ViewData["Title"]</h1>
+        <ul class="event-list">
+            @foreach (var item in Model)
+            {
+                <li class="event-item">
+                    <h2 class="event-title">@item.Name</h2>
+                    <p class="event-info">Datum: @item.DateTime</p>
+                    <p class="event-info">Locatie: @item.Location</p>
+                </li>
+            }
+        </ul>
+    </div>
+</body>
+</html>

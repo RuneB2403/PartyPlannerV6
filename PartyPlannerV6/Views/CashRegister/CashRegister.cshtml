@@ -1,0 +1,88 @@
+﻿@{
+    ViewData["Title"] = "Kassa";
+}
+
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>@ViewData["Title"]</h1>
+
+        <!-- Invoerveld voor OrderId -->
+        <div>
+            <label for="orderId">Voer OrderId in:</label>
+            <input type="text" id="orderId" />
+            <button id="searchButton">Zoeken</button>
+        </div>
+
+        <!-- Voeg een refresh-knop toe -->
+        <button id="refreshButton">Alles</button>
+
+        <ul class="order-list">
+            @foreach (var item in Model)
+            {
+                <li class="order-item">
+                    <h2 class="order-id">@item.OrderId</h2>
+                    <p class="order-payed">Betaald: @item.Payed</p>
+                    <input type="checkbox" id="order-@item.OrderId" class="order-checkbox" @(item.Payed ? "checked" : "") />
+                </li>
+            }
+        </ul>
+    </div>
+    <script>
+        // Voeg een event listener toe aan het zoekknop-element
+        var searchButton = document.getElementById('searchButton');
+        searchButton.addEventListener('click', function () {
+            var orderIdInput = document.getElementById('orderId');
+            var orderId = orderIdInput.value.trim();
+
+            // Filter de lijst met orders op basis van de ingevoerde OrderId
+            var orderItems = document.querySelectorAll('.order-item');
+            orderItems.forEach(function (item) {
+                var orderItem = item.querySelector('.order-id');
+                var itemId = orderItem.textContent;
+                if (itemId === orderId) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+
+        // Voeg een event listener toe aan de refresh-knop
+        var refreshButton = document.getElementById('refreshButton');
+        refreshButton.addEventListener('click', function () {
+            // Herstel de weergave van alle elementen
+            var orderItems = document.querySelectorAll('.order-item');
+            orderItems.forEach(function (item) {
+                item.style.display = 'block';
+            });
+        });
+
+        // Voeg een event listener toe aan alle checkbox-elementen
+        var checkboxes = document.querySelectorAll('.order-checkbox');
+        checkboxes.forEach(function (checkbox) {
+            checkbox.addEventListener('change', function () {
+                var orderId = checkbox.id.split('-')[1];
+                var isChecked = checkbox.checked;
+
+                // Stuur een HTTP-verzoek om de betaalstatus bij te werken
+                fetch('/CashRegister/UpdatePaymentStatus?orderId=' + orderId + '&isChecked=' + isChecked, {
+                    method: 'POST'
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            console.error('Er is een fout opgetreden bij het bijwerken van de betaalstatus.');
+                        }
+                    });
+            });
+        });
+    </script>
+</body>
+</html>

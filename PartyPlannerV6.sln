@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34031.279
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PartyPlannerV6", "PartyPlannerV6\PartyPlannerV6.csproj", "{050436DC-7542-444C-B113-AFC895C874B0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PartyPlannerAPI", "PartyPlannerAPI\PartyPlannerAPI.csproj", "{62C28C31-F1A8-4B22-B18E-F1B1432A69DE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{050436DC-7542-444C-B113-AFC895C874B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{050436DC-7542-444C-B113-AFC895C874B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{050436DC-7542-444C-B113-AFC895C874B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{050436DC-7542-444C-B113-AFC895C874B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62C28C31-F1A8-4B22-B18E-F1B1432A69DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62C28C31-F1A8-4B22-B18E-F1B1432A69DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62C28C31-F1A8-4B22-B18E-F1B1432A69DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62C28C31-F1A8-4B22-B18E-F1B1432A69DE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {59B13F64-F55D-462C-A75D-0E8B0EFB5549}
+	EndGlobalSection
+EndGlobal
