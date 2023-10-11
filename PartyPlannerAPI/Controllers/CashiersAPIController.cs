@@ -19,6 +19,16 @@ namespace PartyPlannerAPI.Controllers
         }
 
         // GET: api/<CashiersAPIController>
+        /// <summary>
+        /// Returns a list of cashiers
+        /// </summary>
+        /// <returns> A list of cashiers</returns>
+        /// <remarks>
+        /// 
+        /// Sample request
+        /// GET/api/cashiers
+        /// 
+        /// </remarks>
         [HttpGet]
         public IEnumerable<Cashier> Get()
         {
