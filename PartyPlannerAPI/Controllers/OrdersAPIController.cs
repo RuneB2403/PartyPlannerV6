@@ -17,6 +17,16 @@ namespace PartyPlannerAPI.Controllers
             _context = context;
         }
 
+
+        /// <summary>
+        /// Haalt een lijst van alle bestellingen op.
+        /// </summary>
+        /// <returns>Een lijst van bestellingen.</returns>
+        /// <remarks>
+        /// Voorbeeldverzoek:
+        /// GET /api/orders
+        /// </remarks>
+
         // GET: api/<OrdersAPIController>
         [HttpGet]
         public IEnumerable<Order> Get()
@@ -24,12 +34,37 @@ namespace PartyPlannerAPI.Controllers
             return _context.Orders.ToList();
         }
 
+
+        /// <summary>
+        /// Haalt een specifieke bestelling op op basis van het ID.
+        /// </summary>
+        /// <param name="id">Het ID van de bestelling om op te halen.</param>
+        /// <returns>De bestelling met het opgegeven ID, indien gevonden, anders null.</returns>
+        /// <remarks>
+        /// Voorbeeldverzoek:
+        /// GET /api/orders/1
+        /// </remarks>
+
         // GET api/<OrdersAPIController>/5
         [HttpGet("{id}")]
         public Order? Get(int id)
         {
             return _context.Orders.FirstOrDefault(c => c.OrderId == id);
         }
+
+
+        /// <summary>
+        /// Maakt een nieuwe bestelling voor een evenement en voegt deze toe aan de lijst van bestellingen.
+        /// </summary>
+        /// <param name="eventId">Het ID van het evenement waarvoor de bestelling wordt gemaakt.</param>
+        /// <remarks>
+        /// Voorbeeldverzoek:
+        /// POST /api/orders
+        /// Request Body: 
+        /// {
+        ///     "eventId": 1
+        /// }
+        /// </remarks>
 
         // POST api/<OrdersAPIController>
         [HttpPost]
@@ -40,6 +75,21 @@ namespace PartyPlannerAPI.Controllers
             _context.Orders.Add(order);
             _context.SaveChanges();
         }
+
+
+        /// <summary>
+        /// Wijzigt het evenement gekoppeld aan een bestelling op basis van het bestellings-ID.
+        /// </summary>
+        /// <param name="id">Het ID van de bestelling die moet worden gewijzigd.</param>
+        /// <param name="eventIdChange">Het nieuwe evenement-ID waaraan de bestelling moet worden gekoppeld.</param>
+        /// <remarks>
+        /// Voorbeeldverzoek:
+        /// PUT /api/orders/1
+        /// Request Body: 
+        /// {
+        ///     "eventIdChange": 2
+        /// }
+        /// </remarks>
 
         // PUT api/<OrdersAPIController>/5
         [HttpPut("{id}")]
@@ -53,6 +103,16 @@ namespace PartyPlannerAPI.Controllers
                 _context.SaveChanges();
             }
         }
+
+
+        /// <summary>
+        /// Verwijdert een specifieke bestelling op basis van het bestellings-ID.
+        /// </summary>
+        /// <param name="idDelete">Het ID van de bestelling die moet worden verwijderd.</param>
+        /// <remarks>
+        /// Voorbeeldverzoek:
+        /// DELETE /api/orders/1
+        /// </remarks>
 
         // DELETE api/<OrdersAPIController>/5
         [HttpDelete("{idDelete}")]

@@ -18,22 +18,32 @@ namespace PartyPlannerAPI.Controllers
             _context = context;
         }
 
-        // GET: api/<CashiersAPIController>
+        
         /// <summary>
-        /// Returns a list of cashiers
+        /// Haalt een lijst van alle kassamedewerkers op.
         /// </summary>
-        /// <returns> A list of cashiers</returns>
+        /// <returns>Een lijst van kassamedewerkers.</returns>
         /// <remarks>
-        /// 
-        /// Sample request
-        /// GET/api/cashiers
-        /// 
+        /// Voorbeeldverzoek:
+        /// GET /api/cashiers
         /// </remarks>
+
+        // GET: api/<CashiersAPIController>
         [HttpGet]
         public IEnumerable<Cashier> Get()
         {
             return _context.Cashiers.ToList();
         }
+
+        /// <summary>
+        /// Haalt een kassamedewerker op op basis van hun naam.
+        /// </summary>
+        /// <param name="name">De naam van de kassamedewerker om op te halen.</param>
+        /// <returns>De kassamedewerker met de opgegeven naam, indien gevonden, anders null.</returns>
+        /// <remarks>
+        /// Voorbeeldverzoek:
+        /// GET /api/cashiers/Rune Bokken
+        /// </remarks>
 
         // GET api/<CashiersAPIController>/5
         [HttpGet("{name}")]
@@ -41,6 +51,17 @@ namespace PartyPlannerAPI.Controllers
         {
             return _context.Cashiers.FirstOrDefault(c => c.Name == name);
         }
+
+
+        /// <summary>
+        /// Voegt een nieuwe kassamedewerker toe met de opgegeven naam.
+        /// </summary>
+        /// <param name="name">De naam van de nieuwe kassamedewerker.</param>
+        /// <remarks>
+        /// Voorbeeldverzoek:
+        /// POST /api/cashiers
+        /// Request Body: "Rune Bokken"
+        /// </remarks>
 
         // POST api/<CashiersAPIController>
         [HttpPost]
@@ -51,6 +72,18 @@ namespace PartyPlannerAPI.Controllers
             _context.Cashiers.Add(cashier);
             _context.SaveChanges();
         }
+
+
+        /// <summary>
+        /// Wijzigt de naam van een kassamedewerker op basis van hun ID.
+        /// </summary>
+        /// <param name="id">Het ID van de kassamedewerker die moet worden gewijzigd.</param>
+        /// <param name="nameChange">De nieuwe naam voor de kassamedewerker.</param>
+        /// <remarks>
+        /// Voorbeeldverzoek:
+        /// PUT /api/cashiers/1
+        /// Request Body: "NewName"
+        /// </remarks>
 
         // PUT api/<CashiersAPIController>/5
         [HttpPut("{id}")]
@@ -64,6 +97,16 @@ namespace PartyPlannerAPI.Controllers
                 _context.SaveChanges();
             }
         }
+
+
+        /// <summary>
+        /// Verwijdert een kassamedewerker op basis van hun naam.
+        /// </summary>
+        /// <param name="nameDelete">De naam van de kassamedewerker die moet worden verwijderd.</param>
+        /// <remarks>
+        /// Voorbeeldverzoek:
+        /// DELETE /api/cashiers/Rune Bokkken
+        /// </remarks>
 
         // DELETE api/<CashiersAPIController>/5
         [HttpDelete("{nameDelete}")]

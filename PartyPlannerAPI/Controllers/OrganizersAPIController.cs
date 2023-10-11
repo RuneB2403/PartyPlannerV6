@@ -17,6 +17,16 @@ namespace PartyPlannerAPI.Controllers
             _context = context;
         }
 
+
+        /// <summary>
+        /// Haalt een lijst van alle organisatoren op.
+        /// </summary>
+        /// <returns>Een lijst van organisatoren.</returns>
+        /// <remarks>
+        /// Voorbeeldverzoek:
+        /// GET /api/organizers
+        /// </remarks>
+
         // GET: api/<OrganizersAPIController>
         [HttpGet]
         public IEnumerable<Organizer> Get()
@@ -24,12 +34,34 @@ namespace PartyPlannerAPI.Controllers
             return _context.Organizers.ToList();
         }
 
+
+        /// <summary>
+        /// Haalt een specifieke organisator op op basis van hun naam.
+        /// </summary>
+        /// <param name="name">De naam van de organisator om op te halen.</param>
+        /// <returns>De organisator met de opgegeven naam, indien gevonden, anders null.</returns>
+        /// <remarks>
+        /// Voorbeeldverzoek:
+        /// GET /api/organizers/Rune Bokken
+        /// </remarks>
+
         // GET api/<OrganizersAPIController>/5
         [HttpGet("{name}")]
         public Organizer? Get(string name)
         {
             return _context.Organizers.FirstOrDefault(o => o.Name == name);
         }
+
+
+        /// <summary>
+        /// Maakt een nieuwe organisator en voegt deze toe aan de lijst van organisatoren.
+        /// </summary>
+        /// <param name="name">De naam van de nieuwe organisator.</param>
+        /// <remarks>
+        /// Voorbeeldverzoek:
+        /// POST /api/organizers
+        /// Request Body: "Rune Bokken"
+        /// </remarks>
 
         // POST api/<OrganizersAPIController>
         [HttpPost]
@@ -40,6 +72,18 @@ namespace PartyPlannerAPI.Controllers
             _context.Organizers.Add(organizer);
             _context.SaveChanges();
         }
+
+
+        /// <summary>
+        /// Wijzigt de naam van een organisator op basis van hun huidige naam.
+        /// </summary>
+        /// <param name="name">De huidige naam van de organisator die moet worden gewijzigd.</param>
+        /// <param name="nameChange">De nieuwe naam voor de organisator.</param>
+        /// <remarks>
+        /// Voorbeeldverzoek:
+        /// PUT /api/organizers/Rune Bokken
+        /// Request Body: "NieuweNaam"
+        /// </remarks>
 
         // PUT api/<OrganizersAPIController>/5
         [HttpPut("{name}")]
@@ -53,6 +97,16 @@ namespace PartyPlannerAPI.Controllers
                 _context.SaveChanges();
             }
         }
+
+
+        /// <summary>
+        /// Verwijdert een organisator op basis van hun naam.
+        /// </summary>
+        /// <param name="nameDelete">De naam van de organisator die moet worden verwijderd.</param>
+        /// <remarks>
+        /// Voorbeeldverzoek:
+        /// DELETE /api/organizers/Rune Bokken
+        /// </remarks>
 
         // DELETE api/<OrganizersAPIController>/5
         [HttpDelete("{nameDelete}")]

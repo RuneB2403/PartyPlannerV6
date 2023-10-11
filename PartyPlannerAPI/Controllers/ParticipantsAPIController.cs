@@ -17,6 +17,16 @@ namespace PartyPlannerAPI.Controllers
             _context = context;
         }
 
+
+        /// <summary>
+        /// Haalt een lijst van alle deelnemers op.
+        /// </summary>
+        /// <returns>Een lijst van deelnemers.</returns>
+        /// <remarks>
+        /// Voorbeeldverzoek:
+        /// GET /api/participants
+        /// </remarks>
+
         // GET: api/<ParticipantsAPIController>
         [HttpGet]
         public IEnumerable<Participant> Get()
@@ -24,12 +34,34 @@ namespace PartyPlannerAPI.Controllers
             return _context.Participants.ToList();
         }
 
+
+        /// <summary>
+        /// Haalt een specifieke deelnemer op op basis van hun naam.
+        /// </summary>
+        /// <param name="name">De naam van de deelnemer om op te halen.</param>
+        /// <returns>De deelnemer met de opgegeven naam, indien gevonden, anders null.</returns>
+        /// <remarks:
+        /// Voorbeeldverzoek:
+        /// GET /api/participants/Rune Bokken
+        /// </remarks>
+
         // GET api/<ParticipantsAPIController>/5
         [HttpGet("{name}")]
         public Participant? Get(string name)
         {
             return _context.Participants.FirstOrDefault(p => p.Name == name);
         }
+
+
+        /// <summary>
+        /// Maakt een nieuwe deelnemer en voegt deze toe aan de lijst van deelnemers.
+        /// </summary>
+        /// <param name="name">De naam van de nieuwe deelnemer.</param>
+        /// <remarks:
+        /// Voorbeeldverzoek:
+        /// POST /api/participants
+        /// Request Body: "Rune Bokken"
+        /// </remarks>
 
         // POST api/<ParticipantsAPIController>
         [HttpPost]
@@ -40,6 +72,18 @@ namespace PartyPlannerAPI.Controllers
             _context.Participants.Add(participant);
             _context.SaveChanges();
         }
+
+
+        /// <summary>
+        /// Wijzigt de naam van een deelnemer op basis van hun huidige naam.
+        /// </summary>
+        /// <param name="name">De huidige naam van de deelnemer die moet worden gewijzigd.</param>
+        /// <param name="nameChange">De nieuwe naam voor de deelnemer.</param>
+        /// <remarks:
+        /// Voorbeeldverzoek:
+        /// PUT /api/participants/Rune Bokken
+        /// Request Body: "NieuweNaam"
+        /// </remarks>
 
         // PUT api/<ParticipantsAPIController>/5
         [HttpPut("{name}")]
@@ -53,6 +97,16 @@ namespace PartyPlannerAPI.Controllers
                 _context.SaveChanges();
             }
         }
+
+
+        /// <summary>
+        /// Verwijdert een deelnemer op basis van hun naam.
+        /// </summary>
+        /// <param name="nameDelete">De naam van de deelnemer die moet worden verwijderd.</param>
+        /// <remarks:
+        /// Voorbeeldverzoek:
+        /// DELETE /api/participants/Rune Bokken
+        /// </remarks
 
         // DELETE api/<ParticipantsAPIController>/5
         [HttpDelete("{nameDelete}")]
