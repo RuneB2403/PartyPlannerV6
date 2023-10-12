@@ -13,8 +13,22 @@
 <body>
     <div class="container">
         <h1>@ViewData["Title"]</h1>
+
+        <h2>Past Events</h2>
         <ul class="event-list">
-            @foreach (var item in Model)
+            @foreach (var item in ViewData["PastEvents"] as List<Event>)
+            {
+                <li class="event-item">
+                    <h2 class="event-title">@item.Name</h2>
+                    <p class="event-info">Datum: @item.DateTime</p>
+                    <p class="event-info">Locatie: @item.Location</p>
+                </li>
+            }
+        </ul>
+
+        <h2>Upcoming Events</h2>
+        <ul class="event-list">
+            @foreach (var item in ViewData["UpcomingEvents"] as List<Event>)
             {
                 <li class="event-item">
                     <h2 class="event-title">@item.Name</h2>
