@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,87 +10,87 @@ using PartyPlannerV6.Models;
 
 namespace PartyPlannerV6.Controllers
 {
-    public class CashiersController : Controller
+    public class CategoriesController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public CashiersController(ApplicationDbContext context)
+        public CategoriesController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Cashiers
+        // GET: Categories
         public async Task<IActionResult> Index()
         {
-              return _context.Cashiers != null ? 
-                          View(await _context.Cashiers.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.Cashiers'  is null.");
+              return _context.Category != null ? 
+                          View(await _context.Category.ToListAsync()) :
+                          Problem("Entity set 'ApplicationDbContext.Category'  is null.");
         }
 
-        // GET: Cashiers/Details/5
+        // GET: Categories/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Cashiers == null)
+            if (id == null || _context.Category == null)
             {
                 return NotFound();
             }
 
-            var cashier = await _context.Cashiers
-                .FirstOrDefaultAsync(m => m.CashierId == id);
-            if (cashier == null)
+            var category = await _context.Category
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (category == null)
             {
                 return NotFound();
             }
 
-            return View(cashier);
+            return View(category);
         }
 
-        // GET: Cashiers/Create
+        // GET: Categories/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Cashiers/Create
+        // POST: Categories/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CashierId,Name")] Cashier cashier)
+        public async Task<IActionResult> Create([Bind("Id,Name")] Category category)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(cashier);
+                _context.Add(category);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(cashier);
+            return View(category);
         }
 
-        // GET: Cashiers/Edit/5
+        // GET: Categories/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Cashiers == null)
+            if (id == null || _context.Category == null)
             {
                 return NotFound();
             }
 
-            var cashier = await _context.Cashiers.FindAsync(id);
-            if (cashier == null)
+            var category = await _context.Category.FindAsync(id);
+            if (category == null)
             {
                 return NotFound();
             }
-            return View(cashier);
+            return View(category);
         }
 
-        // POST: Cashiers/Edit/5
+        // POST: Categories/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CashierId,Name")] Cashier cashier)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] Category category)
         {
-            if (id != cashier.CashierId)
+            if (id != category.Id)
             {
                 return NotFound();
             }
@@ -100,12 +99,12 @@ namespace PartyPlannerV6.Controllers
             {
                 try
                 {
-                    _context.Update(cashier);
+                    _context.Update(category);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CashierExists(cashier.CashierId))
+                    if (!CategoryExists(category.Id))
                     {
                         return NotFound();
                     }
@@ -116,49 +115,49 @@ namespace PartyPlannerV6.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(cashier);
+            return View(category);
         }
 
-        // GET: Cashiers/Delete/5
+        // GET: Categories/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Cashiers == null)
+            if (id == null || _context.Category == null)
             {
                 return NotFound();
             }
 
-            var cashier = await _context.Cashiers
-                .FirstOrDefaultAsync(m => m.CashierId == id);
-            if (cashier == null)
+            var category = await _context.Category
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (category == null)
             {
                 return NotFound();
             }
 
-            return View(cashier);
+            return View(category);
         }
 
-        // POST: Cashiers/Delete/5
+        // POST: Categories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Cashiers == null)
+            if (_context.Category == null)
             {
-                return Problem("Entity set 'ApplicationDbContext.Cashiers'  is null.");
+                return Problem("Entity set 'ApplicationDbContext.Category'  is null.");
             }
-            var cashier = await _context.Cashiers.FindAsync(id);
-            if (cashier != null)
+            var category = await _context.Category.FindAsync(id);
+            if (category != null)
             {
-                _context.Cashiers.Remove(cashier);
+                _context.Category.Remove(category);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CashierExists(int id)
+        private bool CategoryExists(int id)
         {
-          return (_context.Cashiers?.Any(e => e.CashierId == id)).GetValueOrDefault();
+          return (_context.Category?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

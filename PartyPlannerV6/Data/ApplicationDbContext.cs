@@ -12,6 +12,7 @@ namespace PartyPlannerV6.Data
         public DbSet<Order> Orders { get; set; }
         public DbSet<Organizer> Organizers { get; set; }
         public DbSet<Participant> Participants { get; set; }
+        public DbSet<Category> Category { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

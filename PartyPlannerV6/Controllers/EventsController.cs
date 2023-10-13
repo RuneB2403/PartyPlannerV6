@@ -24,7 +24,16 @@ namespace PartyPlannerV6.Controllers
         // GET: Events
         public async Task<IActionResult> Index()
         {
-              return _context.Events != null ? 
+            // Fetch the list of categories from your data source (replace _context and Categories with your actual data context and model).
+            var categories = _context.Category.ToList();
+
+            // Create a SelectList containing category names.
+            var categoryList = new SelectList(categories, "Id", "Name");
+
+            // Pass the SelectList to the view using ViewBag.
+            ViewBag.CategoryList = categoryList;
+
+            return _context.Events != null ?
                           View(await _context.Events.ToListAsync()) :
                           Problem("Entity set 'ApplicationDbContext.Events'  is null.");
         }
@@ -50,6 +59,15 @@ namespace PartyPlannerV6.Controllers
         // GET: Events/Create
         public IActionResult Create()
         {
+            // Fetch the list of categories from your data source (replace _context and Categories with your actual data context and model).
+            var categories = _context.Category.ToList();
+
+            // Create a SelectList containing category names.
+            var categoryList = new SelectList(categories, "Id", "Name");
+
+            // Pass the SelectList to the view using ViewBag.
+            ViewBag.CategoryList = categoryList;
+
             return View();
         }
 
@@ -58,7 +76,7 @@ namespace PartyPlannerV6.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EventId,Name,Description,Category,Location,DateTime,Costs,AvailableParticipants,CurrentParticipants")] Event @event)
+        public async Task<IActionResult> Create([Bind("EventId,Name,Description,CategoryId,Location,DateTime,Costs,AvailableParticipants,CurrentParticipants")] Event @event)
         {
             if (ModelState.IsValid)
             {

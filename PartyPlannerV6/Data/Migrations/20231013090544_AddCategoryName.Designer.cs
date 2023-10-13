@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PartyPlannerV6.Data;
 
@@ -11,9 +12,11 @@ using PartyPlannerV6.Data;
 namespace PartyPlannerV6.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231013090544_AddCategoryName")]
+    partial class AddCategoryName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -275,8 +278,10 @@ namespace PartyPlannerV6.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<int?>("CategoryId")
-                        .IsRequired()
                         .HasColumnType("int");
+
+                    b.Property<string>("CategoryName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<float>("Costs")
                         .HasColumnType("real");
@@ -439,9 +444,7 @@ namespace PartyPlannerV6.Data.Migrations
                 {
                     b.HasOne("PartyPlannerV6.Models.Category", "Category")
                         .WithMany("Events")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CategoryId");
 
                     b.HasOne("PartyPlannerV6.Models.Organizer", null)
                         .WithMany("Events")

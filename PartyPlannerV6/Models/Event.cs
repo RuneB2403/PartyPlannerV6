@@ -14,7 +14,7 @@ namespace PartyPlannerV6.Models
         public string? Description { get; set; }
 
         [Required]
-        public string? Category { get; set; }
+        public int? CategoryId { get; set; }
 
         [Required]
         public string? Location { get; set; }
@@ -30,6 +30,8 @@ namespace PartyPlannerV6.Models
 
         [Required]
         public int CurrentParticipants { get; set; }
+
+        public Category? Category { get; set; } // Navigation property to the Category entity
 
         public List<Participant> Participants { get; set; } = new List<Participant>();
 

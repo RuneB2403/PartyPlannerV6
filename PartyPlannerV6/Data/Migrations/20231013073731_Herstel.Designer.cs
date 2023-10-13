@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PartyPlannerV6.Data;
 
@@ -11,13 +12,15 @@ using PartyPlannerV6.Data;
 namespace PartyPlannerV6.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231013073731_Herstel")]
+    partial class Herstel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.12")
+                .HasAnnotation("ProductVersion", "7.0.11")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -246,23 +249,6 @@ namespace PartyPlannerV6.Data.Migrations
                     b.ToTable("Cashiers");
                 });
 
-            modelBuilder.Entity("PartyPlannerV6.Models.Category", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Category");
-                });
-
             modelBuilder.Entity("PartyPlannerV6.Models.Event", b =>
                 {
                     b.Property<int>("EventId")
@@ -274,9 +260,9 @@ namespace PartyPlannerV6.Data.Migrations
                     b.Property<int>("AvailableParticipants")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CategoryId")
+                    b.Property<string>("Category")
                         .IsRequired()
-                        .HasColumnType("int");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<float>("Costs")
                         .HasColumnType("real");
@@ -303,8 +289,6 @@ namespace PartyPlannerV6.Data.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("EventId");
-
-                    b.HasIndex("CategoryId");
 
                     b.HasIndex("OrganizerId");
 
@@ -437,17 +421,9 @@ namespace PartyPlannerV6.Data.Migrations
 
             modelBuilder.Entity("PartyPlannerV6.Models.Event", b =>
                 {
-                    b.HasOne("PartyPlannerV6.Models.Category", "Category")
-                        .WithMany("Events")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("PartyPlannerV6.Models.Organizer", null)
                         .WithMany("Events")
                         .HasForeignKey("OrganizerId");
-
-                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("PartyPlannerV6.Models.Order", b =>
@@ -462,11 +438,6 @@ namespace PartyPlannerV6.Data.Migrations
                     b.HasOne("PartyPlannerV6.Models.Event", null)
                         .WithMany("Participants")
                         .HasForeignKey("EventId");
-                });
-
-            modelBuilder.Entity("PartyPlannerV6.Models.Category", b =>
-                {
-                    b.Navigation("Events");
                 });
 
             modelBuilder.Entity("PartyPlannerV6.Models.Event", b =>

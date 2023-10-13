@@ -81,12 +81,12 @@ namespace PartyPlannerAPI.Controllers
 
         // POST api/<EventsAPIController>
         [HttpPost]
-        public void Post(string name, string description, string category, string location, DateTime dateTime, float costs, int availableParticipants, int currentParticipants)
+        public void Post(string name, string description, /*string category,*/ string location, DateTime dateTime, float costs, int availableParticipants, int currentParticipants)
         {
             Event eventMake = new Event();
             eventMake.Name = name;
             eventMake.Description = description;
-            eventMake.Category = category;
+            //eventMake.Category = category;
             eventMake.Location = location;
             eventMake.DateTime = dateTime;
             eventMake.Costs = costs;
