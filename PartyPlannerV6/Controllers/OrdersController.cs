@@ -56,11 +56,12 @@ namespace PartyPlannerV6.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("OrderId,DateTime,EventId,Payed")] Order order)
+        public async Task<IActionResult> Create([Bind("OrderId,DateTime,EventName,Payed")] Order order)
         {
             if (ModelState.IsValid)
             {
-                var eventToUpdate = await _context.Events.FindAsync(order.EventId);
+                // Zoek het evenement op basis van de EventName
+                var eventToUpdate = await _context.Events.FirstOrDefaultAsync(e => e.EventName == order.EventName);
 
                 if (eventToUpdate != null)
                 {
@@ -83,6 +84,7 @@ namespace PartyPlannerV6.Controllers
             return View(order);
         }
 
+
         // GET: Orders/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -104,7 +106,7 @@ namespace PartyPlannerV6.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("OrderId,DateTime,EventId,Payed")] Order order)
+        public async Task<IActionResult> Edit(int id, [Bind("OrderId,DateTime,EventName,Payed")] Order order)
         {
             if (id != order.OrderId)
             {

@@ -84,7 +84,7 @@ namespace PartyPlannerAPI.Controllers
         public void Post(string name, string description, /*string category,*/ string location, DateTime dateTime, float costs, int availableParticipants, int currentParticipants)
         {
             Event eventMake = new Event();
-            eventMake.Name = name;
+            eventMake.EventName = name;
             eventMake.Description = description;
             //eventMake.Category = category;
             eventMake.Location = location;
@@ -115,7 +115,7 @@ namespace PartyPlannerAPI.Controllers
             Event? eventUpdate = _context.Events.FirstOrDefault(c => c.EventId == id);
             if (eventUpdate != null)
             {
-                eventUpdate.Name = nameChange;
+                eventUpdate.EventName = nameChange;
                 _context.Events.Update(eventUpdate);
                 _context.SaveChanges();
             }

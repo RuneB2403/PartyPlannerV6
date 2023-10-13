@@ -8,7 +8,7 @@ namespace PartyPlannerV6.Models
         public int EventId { get; set; }
 
         [Required]
-        public string? Name { get; set; }
+        public string? EventName { get; set; }
 
         [Required]
         public string? Description { get; set; }

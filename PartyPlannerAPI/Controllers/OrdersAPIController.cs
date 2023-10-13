@@ -68,10 +68,10 @@ namespace PartyPlannerAPI.Controllers
 
         // POST api/<OrdersAPIController>
         [HttpPost]
-        public void Post(int eventId)
+        public void Post(string eventName)
         {
             Order order = new Order();
-            order.EventId = eventId;
+            order.EventName = eventName;
             _context.Orders.Add(order);
             _context.SaveChanges();
         }
@@ -93,12 +93,12 @@ namespace PartyPlannerAPI.Controllers
 
         // PUT api/<OrdersAPIController>/5
         [HttpPut("{id}")]
-        public void Put(int id, int eventIdChange)
+        public void Put(int id, string eventNameChange)
         {
             Order? orderUpdate = _context.Orders.FirstOrDefault(o => o.OrderId == id);
             if (orderUpdate != null)
             {
-                orderUpdate.EventId = eventIdChange;
+                orderUpdate.EventName = eventNameChange;
                 _context.Orders.Update(orderUpdate);
                 _context.SaveChanges();
             }

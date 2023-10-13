@@ -11,7 +11,7 @@ namespace PartyPlannerV6.Models
         public DateTime DateTime { get; set; }
 
         [Required]
-        public int EventId { get; set; }
+        public string EventName { get; set; }
 
         [Required]
         public bool Payed { get; set; }
