@@ -60,7 +60,10 @@
         </dd>
     </dl>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.EventId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+@if (User.IsInRole("Organizer"))
+{
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model?.EventId">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>
+}

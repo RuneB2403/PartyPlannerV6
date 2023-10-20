@@ -34,6 +34,7 @@
                     <h2 class="event-title">@item.EventName</h2>
                     <p class="event-info">Datum: @item.DateTime</p>
                     <p class="event-info">Locatie: @item.Location</p>
+                    <a href="@Url.Action("Details", "Events", new { id = item.EventId })" class="btn btn-primary">Details</a>
                 </li>
             }
         </ul>
