@@ -42,7 +42,7 @@ namespace PartyPlannerAPI.Controllers
         /// <returns>De bestelling met het opgegeven ID, indien gevonden, anders null.</returns>
         /// <remarks>
         /// Voorbeeldverzoek:
-        /// GET /api/orders/1
+        /// GET /api/orders/Carmeet
         /// </remarks>
 
         // GET api/<OrdersAPIController>/5
@@ -54,15 +54,15 @@ namespace PartyPlannerAPI.Controllers
 
 
         /// <summary>
-        /// Maakt een nieuwe bestelling voor een evenement en voegt deze toe aan de lijst van bestellingen.
+        /// Maakt een nieuwe bestelling voor een evenement en voegt deze toe aan de lijst van orders.
         /// </summary>
-        /// <param name="eventId">Het ID van het evenement waarvoor de bestelling wordt gemaakt.</param>
+        /// <param name="eventName">De naam van het evenement waarvoor de order wordt gemaakt.</param>
         /// <remarks>
         /// Voorbeeldverzoek:
         /// POST /api/orders
         /// Request Body: 
         /// {
-        ///     "eventId": 1
+        ///     "eventName": Carmeet
         /// }
         /// </remarks>
 
@@ -78,16 +78,16 @@ namespace PartyPlannerAPI.Controllers
 
 
         /// <summary>
-        /// Wijzigt het evenement gekoppeld aan een bestelling op basis van het bestellings-ID.
+        /// Wijzigt het evenement gekoppeld aan een order op basis van de order-naam.
         /// </summary>
         /// <param name="id">Het ID van de bestelling die moet worden gewijzigd.</param>
-        /// <param name="eventIdChange">Het nieuwe evenement-ID waaraan de bestelling moet worden gekoppeld.</param>
+        /// <param name="eventNameChange">De nieuwe naam van het evenement waaraan de order moet worden gekoppeld.</param>
         /// <remarks>
         /// Voorbeeldverzoek:
-        /// PUT /api/orders/1
+        /// PUT /api/orders/Carmeet
         /// Request Body: 
         /// {
-        ///     "eventIdChange": 2
+        ///     "eventNameChange": Carmeet
         /// }
         /// </remarks>
 
@@ -106,19 +106,19 @@ namespace PartyPlannerAPI.Controllers
 
 
         /// <summary>
-        /// Verwijdert een specifieke bestelling op basis van het bestellings-ID.
+        /// Verwijdert een specifieke otder op basis van de event naam.
         /// </summary>
-        /// <param name="idDelete">Het ID van de bestelling die moet worden verwijderd.</param>
+        /// <param name="nameDelete">De naam van het evenement die moet worden verwijderd.</param>
         /// <remarks>
         /// Voorbeeldverzoek:
-        /// DELETE /api/orders/1
+        /// DELETE /api/orders/Carmeet
         /// </remarks>
 
         // DELETE api/<OrdersAPIController>/5
-        [HttpDelete("{idDelete}")]
-        public void Delete(int idDelete)
+        [HttpDelete("{nameDelete}")]
+        public void Delete(string nameDelete)
         {
-            Order? orderDelete = _context.Orders.FirstOrDefault(o => o.OrderId == idDelete);
+            Order? orderDelete = _context.Orders.FirstOrDefault(o => o.EventName == nameDelete);
             _context.Orders.Remove(orderDelete);
             _context.SaveChanges();
         }

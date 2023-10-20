@@ -40,7 +40,7 @@ namespace PartyPlannerAPI.Controllers
         /// </summary>
         /// <param name="name">De naam van de deelnemer om op te halen.</param>
         /// <returns>De deelnemer met de opgegeven naam, indien gevonden, anders null.</returns>
-        /// <remarks:
+        /// <remarks>
         /// Voorbeeldverzoek:
         /// GET /api/participants/Rune Bokken
         /// </remarks>
@@ -57,7 +57,7 @@ namespace PartyPlannerAPI.Controllers
         /// Maakt een nieuwe deelnemer en voegt deze toe aan de lijst van deelnemers.
         /// </summary>
         /// <param name="name">De naam van de nieuwe deelnemer.</param>
-        /// <remarks:
+        /// <remarks>
         /// Voorbeeldverzoek:
         /// POST /api/participants
         /// Request Body: "Rune Bokken"
@@ -79,7 +79,7 @@ namespace PartyPlannerAPI.Controllers
         /// </summary>
         /// <param name="name">De huidige naam van de deelnemer die moet worden gewijzigd.</param>
         /// <param name="nameChange">De nieuwe naam voor de deelnemer.</param>
-        /// <remarks:
+        /// <remarks>
         /// Voorbeeldverzoek:
         /// PUT /api/participants/Rune Bokken
         /// Request Body: "NieuweNaam"
@@ -103,10 +103,10 @@ namespace PartyPlannerAPI.Controllers
         /// Verwijdert een deelnemer op basis van hun naam.
         /// </summary>
         /// <param name="nameDelete">De naam van de deelnemer die moet worden verwijderd.</param>
-        /// <remarks:
+        /// <remarks>
         /// Voorbeeldverzoek:
         /// DELETE /api/participants/Rune Bokken
-        /// </remarks
+        /// </remarks>
 
         // DELETE api/<ParticipantsAPIController>/5
         [HttpDelete("{nameDelete}")]

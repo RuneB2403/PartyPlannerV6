@@ -11,7 +11,6 @@ using PartyPlannerV6.Models;
 
 namespace PartyPlannerV6.Controllers
 {
-    [Authorize(Roles = "Organizer")]
     public class CashiersController : Controller
     {
         

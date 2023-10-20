@@ -76,7 +76,7 @@ namespace PartyPlannerV6.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EventId,Name,Description,CategoryId,Location,DateTime,Costs,AvailableParticipants,CurrentParticipants")] Event @event)
+        public async Task<IActionResult> Create([Bind("EventId,EventName,Description,CategoryId,Location,DateTime,Costs,AvailableParticipants,CurrentParticipants")] Event @event)
         {
             if (ModelState.IsValid)
             {
