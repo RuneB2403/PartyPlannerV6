@@ -108,7 +108,7 @@ namespace PartyPlannerV6.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EventId,Name,Description,Category,Location,DateTime,Costs,AvailableParticipants,CurrentParticipants")] Event @event)
+        public async Task<IActionResult> Edit(int id, [Bind("EventId,EventName,Description,CategoryId,Location,DateTime,Costs,AvailableParticipants,CurrentParticipants")] Event @event)
         {
             if (id != @event.EventId)
             {
