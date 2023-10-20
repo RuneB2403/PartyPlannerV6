@@ -118,6 +118,8 @@ namespace PartyPlannerV6.Areas.Identity.Pages.Account
                 // Attempt to find the user in the Participant table
                 var participantUser = await _dbContext.Participants.FirstOrDefaultAsync(p => p.Name == Input.Name);
 
+                var cashierUser = await _dbContext.Cashiers.FirstOrDefaultAsync(c =>  c.Name == Input.Name);
+
                 // Check if the user exists in either table
                 if (organizerUser != null)
                 {
@@ -138,6 +140,16 @@ namespace PartyPlannerV6.Areas.Identity.Pages.Account
                     if (result.Succeeded)
                     {
                         _logger.LogInformation("Participant logged in.");
+                        return LocalRedirect(returnUrl);
+                    }
+                }
+                else if (cashierUser != null)
+                {
+                    var result = await _signInManager.PasswordSignInAsync(Input.Name, Input.Password, Input.RememberMe, lockoutOnFailure: false);
+
+                    if (result.Succeeded)
+                    {
+                        _logger.LogInformation("Cashier logged in.");
                         return LocalRedirect(returnUrl);
                     }
                 }

@@ -133,7 +133,12 @@ namespace PartyPlannerV6.Areas.Identity.Pages.Account
                         var participant = new Participant {Name = Input.Name };
                         _dbContext.Participants.Add(participant);
                         await _userManager.AddToRoleAsync(user, "Participant");
-
+                    }
+                    else if (Input.Role == "cashier")
+                    {
+                        var cashier = new Cashier { Name = Input.Name };
+                        _dbContext.Cashiers.Add(cashier);
+                        await _userManager.AddToRoleAsync(user, "Cashier");
                     }
 
                     // Save changes to the respective tables (organizer or participant)
