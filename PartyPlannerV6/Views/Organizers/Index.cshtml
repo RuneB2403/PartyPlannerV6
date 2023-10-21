@@ -7,7 +7,7 @@
 <h1>Organisatoren</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Nieuwe organisator aanmaken</a>
 </p>
 <table class="table">
     <thead>
@@ -25,9 +25,9 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.OrganizerId">Edit</a> |
+                <a asp-action="Edit" asp-route-id="@item.OrganizerId">Bewerken</a> |
                 <a asp-action="Details" asp-route-id="@item.OrganizerId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.OrganizerId">Delete</a>
+                <a asp-action="Delete" asp-route-id="@item.OrganizerId">Verwijderen</a>
             </td>
         </tr>
 }
