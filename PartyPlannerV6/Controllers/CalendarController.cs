@@ -22,8 +22,8 @@ namespace PartyPlannerV6.Controllers
             List<Event> pastEvents = _context.Events.Where(e => e.DateTime < currentDate).OrderBy(e => e.DateTime).ToList();
             List<Event> upcomingEvents = _context.Events.Where(e => e.DateTime >= currentDate).OrderBy(e => e.DateTime).ToList();
 
-            ViewData["PastEvents"] = pastEvents;
-            ViewData["UpcomingEvents"] = upcomingEvents;
+            ViewData["Eerdere evenementen"] = pastEvents;
+            ViewData["Aankomende evenementen"] = upcomingEvents;
 
             return View();
         }

@@ -14,9 +14,9 @@
     <div class="container">
         <h1>@ViewData["Title"]</h1>
 
-        <h2>Past Events</h2>
+        <h2>Eerdere evenementen:</h2>
         <ul class="event-list">
-            @foreach (var item in ViewData["PastEvents"] as List<Event>)
+            @foreach (var item in ViewData["Eerdere evenementen"] as List<Event>)
             {
                 <li class="event-item">
                     <h2 class="event-title">@item.EventName</h2>
@@ -26,9 +26,9 @@
             }
         </ul>
 
-        <h2>Upcoming Events</h2>
+        <h2>Aankomende evenementen:</h2>
         <ul class="event-list">
-            @foreach (var item in ViewData["UpcomingEvents"] as List<Event>)
+            @foreach (var item in ViewData["Aankomende evenementen"] as List<Event>)
             {
                 <li class="event-item">
                     <h2 class="event-title">@item.EventName</h2>
